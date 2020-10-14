@@ -59,6 +59,7 @@ public class Index {
 	
 	
 	public static void listarCurso() {
+		
 		List<Curso> cursos = cursoDao.listarCurso();
 
 		System.out.println("Listado de curso");
@@ -73,7 +74,7 @@ public class Index {
 	
 	
 	public static void main(String[] args) {
-
+		
 		
 		
 		/*

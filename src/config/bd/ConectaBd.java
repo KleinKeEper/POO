@@ -8,7 +8,7 @@ public class ConectaBd {
 	private final String url = "jdbc:mysql://bykvhkhrnzmveluf2ig4-mysql.services.clever-cloud.com/bykvhkhrnzmveluf2ig4";
     private final String driver = "com.mysql.jdbc.Driver";
     private final String user = "uldctxfe72qb8zxo";
-    private final String password = "k3CeyKmXamscPZg3z3NC";
+    private final String password = "";
 	
 	
 	
