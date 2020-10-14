@@ -6,8 +6,8 @@ import config.bd.ConectaBd;
 
 public class test_ConectaBd {
 
+	
     public static void main(String[] args) {
-        
     	ConectaBd bd = new ConectaBd();
         
         try (Connection cn = bd.getConnection()) {

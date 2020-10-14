@@ -52,33 +52,33 @@ public class EstudianteDAO implements CRUD{
     @Override
     public boolean agregarestudiante(Estudiante estudiante) {
     	
-    	Boolean agregado  = false;
-    	String consulta = "INSERT INTO estudiante (nombre , apellidos, dni, codigo, estado) values( '" + estudiante.getNombre() + 
-    			 "' , '" + estudiante.getApellidos() + "' , '" + estudiante.getDni() + "' , '" + estudiante.getCodigo() + "' , '" 
-    			+ estudiante.getEstado()+ "' )";
+    	Boolean agregado = false;
     	
+    	String consulta = "INSERT INTO estudiante (nombre , apellidos, dni, codigo, estado) values( '" + estudiante.getNombre() +
+    			"' , '" + estudiante.getApellidos() + "', '" + estudiante.getDni() + "' , '" + estudiante.getCodigo() + "' , '" +
+    			estudiante.getEstado()	+ "' );";
     	
     	try {
     		
     		con = cn.getConnection();
             pst = con.prepareStatement(consulta);
             pst.executeUpdate();
-//            rs = pst.executeQuery();
-            agregado = true;
-            con.close();
+    		con.close();
             pst.close();
-            
+            agregado = true;
+    		
 		} catch (Exception e) {
-			System.out.println("Something were wrong in Insert !!!!");
+			System.out.println("Something were wrong in Insert");
 			System.out.println(e.getMessage());
 			// TODO: handle exception
 		}
-    	System.out.println(consulta);
+    	
+    	
     	
     	
     	
     	return agregado;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
