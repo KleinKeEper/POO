@@ -5,13 +5,16 @@ import java.util.List;
 import interfaces.CRUD;
 import modelo.Curso;
 import modelo.Estudiante;
+import modelo.Persona;
 import modeloDAO.CursoDao;
 import modeloDAO.EstudianteDAO;
+import modeloDAO.PersonaDao;
 
 public class Index {
 
 	private static EstudianteDAO estudianteDAO = new EstudianteDAO();
 	private static CursoDao cursoDao = new CursoDao();
+	private static PersonaDao personaDao = new PersonaDao();
 
 	public static void listarEstudiantes() {
 		EstudianteDAO estudianteDAO = new EstudianteDAO();
@@ -27,36 +30,6 @@ public class Index {
 		}
 	}
 
-	public static String darFormato(String cadena) {
-		if (cadena.length() >= 31) {
-			cadena = cadena.substring(0, 28) + "..  ";
-		} else if (cadena.length() >= 23) {
-			cadena = cadena + "\t";
-		} else if (cadena.length() >= 15) {
-			cadena = cadena + "\t\t";
-		} else if (cadena.length() >= 7) {
-			cadena = cadena + "\t\t\t";
-		} else {
-			cadena = cadena + "\t\t\t\t";
-		}
-		return cadena;
-	}
-
-	
-	public static void insertEstuduante() {
-		
-		
-//		System.out.println(estudianteDAO.agregarestudiante(new Estudiante(0, "Klein", "Keep", "45647845", "201851120", "A")));
-		
-		if (estudianteDAO.agregarestudiante(new Estudiante(0, "Klein", "Keep", "45647845", "201851120", "A"))) {
-			System.out.println("Ingresado correctamente");
-		}else {
-			System.out.println("No se inserto el registro");
-		}		
-		
-		
-	}
-	
 	
 	public static void listarCurso() {
 		
@@ -71,6 +44,67 @@ public class Index {
 		}
 		
 	}
+	
+	
+	private static void listarPersona() {
+		List<Persona> personas = personaDao.listarestudiante();
+		
+		System.out.println("\t\t\t" + " **** Listado de Personas ******");
+		System.out.println("ID\tNombre\t\tApellido\tEdad\tSexo\tProfesion");
+		
+		for (Persona persona : personas) {
+			System.out.println(formatoID(String.valueOf(persona.getId_persona()))  + darFormato(persona.getNombre()) 
+			+ darFormato(persona.getApellido())+ 
+			formatoID(String.valueOf(persona.getEdad())) + formatoID(persona.getSexo()) + darFormato(persona.getProfesion()) );
+		}
+		
+	}
+	
+	public static void insertEstuduante() {
+		
+//		System.out.println(estudianteDAO.agregarestudiante(new Estudiante(0, "Klein", "Keep", "45647845", "201851120", "A")));
+		
+		if (estudianteDAO.agregarestudiante(new Estudiante(0, "Klein", "Keep", "45647845", "201851120", "A"))) {
+			System.out.println("Ingresado correctamente");
+		}else {
+			System.out.println("No se inserto el registro");
+		}			
+		
+	}
+	
+	
+	public static String formatoID(String cadena) {
+		
+		return cadena + "\t";
+	}
+	
+	public static String darFormato(String cadena) {
+		// 7
+//		if (cadena.length() >= 15) {
+//			cadena = cadena.substring(0, 10) + "../t";
+//		} else if (cadena.length() >= 10) {
+//			cadena = cadena + "\t";
+//		} else if (cadena.length() >= 7) {
+//			cadena = cadena + "\t\t";
+//		} else {
+//			cadena = cadena + "\t\t";
+//		}
+		
+		if (cadena.length() >= 15) {
+			cadena = cadena.substring(0, 10) + "..\t";
+		} else if (cadena.length() >= 10) {
+			cadena = cadena + "\t";
+		} else {
+			cadena = cadena + "\t\t";
+		}
+		return cadena;
+	}
+
+	
+	
+	
+	
+	
 	
 	
 	public static void main(String[] args) {
@@ -89,7 +123,9 @@ public class Index {
 
 //		listarEstudiantes(); 
 //		insertEstuduante();
-		listarCurso();
+//		listarCurso();
+		
+		listarPersona();
 
 	}
 }
